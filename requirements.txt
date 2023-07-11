@@ -8,3 +8,4 @@ python-dotenv
 pyTelegramBotAPI
 python-telegram-bot
 psycopg2
+psycopg2-binary
