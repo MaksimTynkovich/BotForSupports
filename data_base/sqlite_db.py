@@ -12,7 +12,7 @@ def sql_start():
     if base:
         print("DB connect!")
     cursor.execute('CREATE TABLE IF NOT EXISTS users(user_id INT PRIMARY KEY, username TEXT, is_support BOOLEAN, is_work, is_banned BOOLEAN)')
-    cursor.execute("CREATE TABLE IF NOT EXISTS tickets(id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, message TEXT, message_count INTEGER, channel_message_id INTEGER, group_message_id INTEGER, request_id INTEGER, status TEXT)")
+    cursor.execute("CREATE TABLE IF NOT EXISTS tickets(id INTEGER PRIMARY KEY, user_id INTEGER, message TEXT, message_count INTEGER, channel_message_id INTEGER, group_message_id INTEGER, request_id INTEGER, status TEXT)")
     base.commit()
 
 async def add_user(user_id, username):
