@@ -1,0 +1,9 @@
+aiogram
+aiohttp
+async-timeout
+attrs
+certifi
+cffi
+python-dotenv
+pyTelegramBotAPI
+python-telegram-bot
