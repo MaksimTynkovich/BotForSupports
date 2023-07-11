@@ -11,7 +11,7 @@ def sql_start():
     cursor = base.cursor()
     if base:
         print("DB connect!")
-    base.execute('CREATE TABLE IF NOT EXISTS users(user_id INT PRIMARY KEY, username TEXT, is_support BOOLEAN, is_work, is_banned BOOLEAN)')
+    cursor.execute('CREATE TABLE IF NOT EXISTS users(user_id INT PRIMARY KEY, username TEXT, is_support BOOLEAN, is_work, is_banned BOOLEAN)')
     cursor.execute("CREATE TABLE IF NOT EXISTS tickets(id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, message TEXT, message_count INTEGER, channel_message_id INTEGER, group_message_id INTEGER, request_id INTEGER, status TEXT)")
     base.commit()
 
