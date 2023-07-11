@@ -5,9 +5,9 @@ import os
 
 def sql_start():
     global base, cursor
-    base = psycopg2.connect("postgresql://postgres:t0cSgT93h03PZVLljos0@containers-us-west-62.railway.app:7458/railway", sslmode="require")
+    # base = psycopg2.connect("postgresql://postgres:t0cSgT93h03PZVLljos0@containers-us-west-62.railway.app:7458/railway", sslmode="require")
     # base = sq.connect('prod1.db')
-    # psycopg2.connect(dbname="db_name", host="db_host", user="db_user", password="db_pass", port="db_port")
+    base = psycopg2.connect(dbname="railway", host="containers-us-west-62.railway.app", user="postgres", password="t0cSgT93h03PZVLljos0", port="7458")
     cursor = base.cursor()
     if base:
         print("DB connect!")
