@@ -1,9 +1,13 @@
-import sqlite3 as sq
+# import sqlite3 as sq
+import psycopg2
 from create_bot import bot
+import os
 
 def sql_start():
     global base, cursor
-    base = sq.connect('prod1.db')
+    base = psycopg2.connect("postgresql://postgres:t0cSgT93h03PZVLljos0@containers-us-west-62.railway.app:7458/railway", sslmode="require")
+    # base = sq.connect('prod1.db')
+    # psycopg2.connect(dbname="db_name", host="db_host", user="db_user", password="db_pass", port="db_port")
     cursor = base.cursor()
     if base:
         print("DB connect!")
