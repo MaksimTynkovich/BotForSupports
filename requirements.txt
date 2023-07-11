@@ -7,3 +7,4 @@ cffi
 python-dotenv
 pyTelegramBotAPI
 python-telegram-bot
+psycopg2
