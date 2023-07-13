@@ -16,7 +16,8 @@ def sql_start():
     base.commit()
 
 async def add_user(user_id, username):
-    cursor.execute("SELECT user_id, username FROM users WHERE user_id=?", (user_id,))
+    # cursor.execute("SELECT user_id, username FROM users WHERE user_id=?", (user_id,))
+    cursor.execute(f"SELECT user_id, username FROM users WHERE user_id= {user_id}")
     user = cursor.fetchone()
     try:
         if user[1] is None:
@@ -24,7 +25,8 @@ async def add_user(user_id, username):
             base.commit()
     except:
         if not user:
-            cursor.execute("INSERT INTO users VALUES (?, ?, ?, ?, ?)", (user_id, username, False, False, False))
+            cursor.execute(f"INSERT INTO users (user_id, username, is_support, is_work, is_banned) values (f{user_id}, f{username}, False, False, False)")
+            # cursor.execute("INSERT INTO users VALUES (?, ?, ?, ?, ?)", (user_id, username, False, False, False))
             base.commit()
 
 async def is_active_ticket(user_id): # Функция проверки пользователя на активный тикет
