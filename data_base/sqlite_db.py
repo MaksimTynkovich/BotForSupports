@@ -17,7 +17,8 @@ def sql_start():
 
 async def add_user(user_id, username):
     # cursor.execute("SELECT user_id, username FROM users WHERE user_id=?", (user_id,))
-    cursor.execute(f"SELECT user_id, username FROM users WHERE user_id= {user_id}")
+    # cursor.execute(f"SELECT user_id, username FROM users WHERE user_id= {user_id}")
+    cursor.execute(f"SELECT user_id, username FROM users WHERE user_id= CAST({user_id} AS INT)")
     user = cursor.fetchone()
     try:
         if user[1] is None:
