@@ -62,7 +62,7 @@ async def take_ticket(message: types.Message):
                     await bot.send_message(await sqlite_db.get_user(argument_id=argument_id), "Саппорт начал работу по вашему обращению")
                     await bot.send_message(message.from_user.id, "Взят в работу")
                     await bot.send_message(group_id, f"🟡 В работе, {message.from_user.username}", reply_to_message_id=ticket_data[0])
-                    await bot.edit_message_text(chat_id='@introsattest', text=ticket_data[2], message_id=ticket_data[1])
+                    await bot.edit_message_text(chat_id=channel_id, text=ticket_data[2], message_id=ticket_data[1])
             except:
                 await bot.send_message(message.from_user.id, "Ошибка!\nВ ID должны присутствовать только цифры")
             
@@ -80,7 +80,7 @@ async def close_ticket(message: types.Message):
                 ticket_data = await sqlite_db.close_ticket(argument_id)
                 await bot.send_message(message.from_user.id, f"🟢 Обращение №{argument_id} закрыто!")
                 await bot.send_message(group_id, f"🟢 Закрыто, {message.from_user.username}", reply_to_message_id=ticket_data[0])
-                await bot.edit_message_text(chat_id='@introsattest', text=ticket_data[2], message_id=ticket_data[1])
+                await bot.edit_message_text(chat_id=channel_id, text=ticket_data[2], message_id=ticket_data[1])
 
 @dp.message_handler(filters.IDFilter(chat_id=group_id))
 async def admin_answer(message: types.Message, state: FSMContext):
