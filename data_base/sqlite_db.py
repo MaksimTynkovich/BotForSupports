@@ -1,13 +1,10 @@
-# import sqlite3 as sq
-import psycopg2
+import sqlite3 as sq
 from create_bot import bot
 import os
 
 def sql_start():
     global base, cursor
-    # base = psycopg2.connect("postgresql://postgres:t0cSgT93h03PZVLljos0@containers-us-west-62.railway.app:7458/railway", sslmode="require")
-    # base = sq.connect('prod1.db')
-    base = psycopg2.connect(dbname="railway", host="containers-us-west-62.railway.app", user="postgres", password="t0cSgT93h03PZVLljos0", port="7458")
+    base = sq.connect('prod1.db')
     cursor = base.cursor()
     if base:
         print("DB connect!")
@@ -16,9 +13,7 @@ def sql_start():
     base.commit()
 
 async def add_user(user_id, username):
-    # cursor.execute("SELECT user_id, username FROM users WHERE user_id=?", (user_id,))
-    # cursor.execute(f"SELECT user_id, username FROM users WHERE user_id= {user_id}")
-    cursor.execute(f"SELECT user_id, username FROM users WHERE user_id= CAST({user_id} AS INT)")
+    cursor.execute("SELECT user_id, username FROM users WHERE user_id=?", (user_id,))
     user = cursor.fetchone()
     try:
         if user[1] is None:
@@ -26,8 +21,7 @@ async def add_user(user_id, username):
             base.commit()
     except:
         if not user:
-            cursor.execute(f"INSERT INTO users (user_id, username, is_support, is_work, is_banned) values (f{user_id}, f{username}, False, False, False)")
-            # cursor.execute("INSERT INTO users VALUES (?, ?, ?, ?, ?)", (user_id, username, False, False, False))
+            cursor.execute("INSERT INTO users VALUES (?, ?, ?, ?, ?)", (user_id, username, False, False, False))
             base.commit()
 
 async def is_active_ticket(user_id): # Функция проверки пользователя на активный тикет
