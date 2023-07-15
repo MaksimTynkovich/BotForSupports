@@ -115,10 +115,10 @@ async def load_question(message: types.Message, state: FSMContext):
                 if not await sqlite_db.is_active_ticket(message.from_user.id):
                     botSend = await bot.send_message(channel_id, 
                     f'🔴️️️️️️ #НЕ_ОТВЕЧЕНО #Telegram #ID{message.from_user.id}\n\nОбращение №{message.message_id} от пользователя {message.from_user.username} \n\n📌 {message.text}')
-                    message_user_id[list(botSend)[5][1]] = message.from_user.id
+                    message_user_id[list(botSend)[4][1]] = message.from_user.id
                     # list(botSend)[5][1] - Достаём текст сообщения
                     # list(botSend)[0][1] - Достаём ID поста
-                    await sqlite_db.add_ticket(user_id=message.from_user.id, message=list(botSend)[5][1], channel_message_id=list(botSend)[0][1], request_id=message.message_id)
+                    await sqlite_db.add_ticket(user_id=message.from_user.id, message=list(botSend)[4][1], channel_message_id=list(botSend)[0][1], request_id=message.message_id)
 
                 if await sqlite_db.get_ticket_status_active(message.from_user.id) == "active" and await sqlite_db.get_count_message(user_id=message.from_user.id) == 10:
                     await bot.send_message(message.from_user.id, "Ожидайте ответа от саппорта")
