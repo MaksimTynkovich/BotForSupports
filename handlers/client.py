@@ -110,7 +110,7 @@ async def load_question(message: types.Message, state: FSMContext):
                     id_post = await sqlite_db.channel_message_id(user_id=message.from_user.id)
                     new_msg = await sqlite_db.get_message_channel(message.from_user.id)
 
-                    await bot.edit_message_text(chat_id='@introsattest', text=new_msg, message_id=id_post)
+                    await bot.edit_message_text(chat_id=channel_id, text=new_msg, message_id=id_post)
 
                 if not await sqlite_db.is_active_ticket(message.from_user.id):
                     botSend = await bot.send_message(channel_id, 
